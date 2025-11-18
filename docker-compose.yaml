@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+  namenode:
+    image: hadoop-python1
+    build: .
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    ports:
+      - 9870:9870
+    env_file:
+      - ./config
+    environment:
+      ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+      CLUSTER_IВ: "CID-fixed-2025-01"
+
+  datanode:
+    image: hadoop-python2
+    build: .
+    command: ["hdfs", "datanode"]
+    env_file:
+      - ./config
+  resourcemanager:
+    image: hadoop-python3
+    build: .
+    hostname: resourcemanager
+    command: ["yarn", "resourcemanager"]
+    ports:
+      - 8088:8088
+    env_file:
+      - ./config
+    volumes:
+      - ./test.sh:/opt/test.sh
+  nodemanager:
+    image: hadoop-python4
+    build: .
+    command: ["yarn", "nodemanager"]
+    env_file:
+      - ./config

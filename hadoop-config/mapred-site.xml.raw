@@ -1,0 +1,8 @@
+yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=
+yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=
+mapreduce.map.env: HADOOP_MAPRED_HOME=
+mapreduce.reduce.env: HADOOP_MAPRED_HOME=
+mapreduce.map.env: HADOOP_MAPRED_HOME=
+mapreduce.reduce.env: HADOOP_MAPRED_HOME=
+mapreduce.framework.name: yarn
+mapreduce.framework.name: yarn

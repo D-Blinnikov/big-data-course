@@ -1,0 +1,3 @@
+fs.default.name: hdfs://namenode
+fs.defaultFS: hdfs://namenode
+fs.defaultFS: hdfs://namenode
