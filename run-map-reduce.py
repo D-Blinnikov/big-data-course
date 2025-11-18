@@ -1,11 +1,10 @@
-import subprocess
+
 from datetime import datetime
+from utils import run
 
 NAME_NODE = "hadoop-namenode-1"
 
-def run(cmd):
-    print(f"==> {cmd}")
-    subprocess.run(cmd, shell=True, check=True)
+
 
 def main():
 
