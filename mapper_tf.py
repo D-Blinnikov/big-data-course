@@ -5,10 +5,14 @@ import sys
 from collections import Counter
 import re
 
+test_data = ['1293336984	Экология без фанатизма	химик 10 способов приучить детей заботиться об экологии без фанатизма,',
+             '1337112293	Страшная химия	ну что ж, телеграм-каналу быть! с вами пищевой технолог и химик оля,'] 
+
 # Регулярка: только буквы (кириллица + латиница), минимум 2 символа
 WORD_RE = re.compile(r'[а-яА-ЯёЁ]{4,}')
 
 for line in sys.stdin:
+# for line in test_data:
     line = line.strip()
     if not line:
         continue
@@ -18,7 +22,6 @@ for line in sys.stdin:
         continue
 
     channel_id, channel_name, text = parts
-
     # Ищем только настоящие слова
     words = WORD_RE.findall(text.lower())
 

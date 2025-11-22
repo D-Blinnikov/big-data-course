@@ -2,23 +2,6 @@
 # Запуск первой джобы: TF + DF
 
 import os
-from datetime import datetime
-from utils import run
-
-# Загружаем .env (если python-dotenv не установлен — просто читаем вручную)
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    print("python-dotenv не найден — переменные окружения берутся из ОС")
-
-NAME_NODE              = os.getenv("NAME_NODE", "hadoop-namenode-1")
-CODE_DIR_IN_CONTAINER  = os.getenv("CODE_DIR_IN_CONTAINER", "/temp")
-INPUT_DOCS             = os.getenv("INPUT_DOCS", "/user/root/tg_channels/docs.txt")
-OUTPUT_BASE_DIR        = os.getenv("OUTPUT_BASE_DIR", "/user/hadoop/tfidf_results")
-
-# run_step1_tf_df.py
-import os
 from dotenv import load_dotenv
 from utils import run
 
@@ -45,7 +28,10 @@ def main():
     run(f"docker exec {NAME_NODE} sh -c \"{streaming_cmd}\"")
 
     print(f"\nStep 1 завершён! Результат в {TFIDF_STEP1}")
-    print("Теперь можно запускать Step 2 — он сам найдёт данные")
+    print("Первые 20 строк результата (TF + DF):")
+    run(f"docker exec {NAME_NODE} hdfs dfs -cat {TFIDF_STEP1}/part-00000 | head -n 20")
+
+    print("\nТеперь можно запускать Step 2 — он сам найдёт данные")
 
 if __name__ == "__main__":
     main()

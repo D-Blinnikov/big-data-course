@@ -22,6 +22,10 @@ def main():
     # 3–4. Копирование файлов в контейнер
     run(f"docker cp ./data {NAME_NODE}:/tmp/")
     run(f"docker cp ./code {NAME_NODE}:/tmp/")
+    run(f"docker cp ./mapper_tf.py {NAME_NODE}:/tmp/")
+    run(f"docker cp ./reducer_df.py {NAME_NODE}:/tmp/")
+    run(f"docker cp ./mapper_tfidf.py {NAME_NODE}:/tmp/")
+    run(f"docker cp ./reducer_tfidf.py {NAME_NODE}:/tmp/")
 
     # 5. Команды HDFS внутри контейнера
     hdfs_cmds = [

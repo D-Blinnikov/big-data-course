@@ -13,6 +13,7 @@ OUTPUT_BASE_DIR       = os.getenv("OUTPUT_BASE_DIR", "/user/hadoop/tfidf_results
 # STEP1_OUTPUT          = os.getenv("STEP1_OUTPUT")  # ← обязательно укажи в .env после первой джобы!
 TFIDF_STEP1           = os.getenv("TFIDF_STEP1")
 TFIDF_FINAL           = os.getenv("TFIDF_FINAL")
+MIN_TFIDF           = os.getenv("MIN_TFIDF")
 
 
 
@@ -33,6 +34,11 @@ def main():
     print(f"Общее количество каналов: {total_docs}")
 
     print(f"Запуск Step 2: {TFIDF_STEP1} → {TFIDF_FINAL}")
+    
+
+    run(f"docker exec {NAME_NODE} sh -c \"hdfs dfs -cat {TFIDF_STEP1}/part-* | head -n 20\"")
+
+    run(f"docker exec {NAME_NODE} hdfs dfs -rm -r -f {TFIDF_FINAL}")
 
     streaming_cmd = (
         "hadoop jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar "
@@ -43,7 +49,7 @@ def main():
         f"-output {TFIDF_FINAL} "
         f"-cmdenv TOTAL_DOCS={total_docs} "
         "-cmdenv MAX_TERMS=8000 "
-        "-cmdenv MIN_TFIDF=0.07 "
+        f"-cmdenv MIN_TFIDF={MIN_TFIDF} "
         "-cmdenv ENABLE_L2_NORM=1 "
         "-cmdenv PYTHONIOENCODING=utf-8"
     )
@@ -53,6 +59,9 @@ def main():
     print(f"\nГотово! Финальные вектора в {TFIDF_FINAL}")
     print("Скачивай:")
     print(f"mkdir -p final_vectors && docker cp {NAME_NODE}:{TFIDF_FINAL}/part-* final_vectors/")
+
+    print("Пример результата (первые 100 строк из part-00000):")
+    run(f"docker exec {NAME_NODE} hdfs dfs -cat {TFIDF_FINAL}/part-00000 | head -n 100")
 
 if __name__ == "__main__":
     main()
