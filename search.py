@@ -14,7 +14,7 @@ load_dotenv()
 NAME_NODE         = os.getenv("NAME_NODE", "hadoop-namenode-1")
 TFIDF_FINAL       = os.getenv("TFIDF_FINAL", "/user/hadoop/tfidf_final")
 LOCAL_VECTORS_DIR = "tg_vectors_cache"
-VOCAB_SIZE        = 10000  # ← фиксированная длина вектора
+VOCAB_SIZE        = 1  # ← фиксированная длина вектора
 
 # Глобальные структуры
 word_to_index = {}
@@ -58,7 +58,7 @@ def download_vectors_if_needed():
 def build_vocabulary_and_load_vectors():
     global word_to_index, channel_vectors, channel_norms
 
-    print("Строю глобальный словарь (топ-{} слов)...".format(VOCAB_SIZE))
+    # print("Строю глобальный словарь (топ-{} слов)...")
     word_freq = Counter()
     for filepath in glob.glob(f"{LOCAL_VECTORS_DIR}/part-*"):
         with open(filepath, "r", encoding="utf-8") as f:
@@ -72,9 +72,13 @@ def build_vocabulary_and_load_vectors():
                         word = term.rsplit(":", 1)[0]
                         word_freq[word] += 1
 
-    top_words = [w for w, _ in word_freq.most_common(VOCAB_SIZE)]
+    top_words = [w for w, _ in word_freq.most_common()]
     word_to_index = {word: i for i, word in enumerate(top_words)}
+    global VOCAB_SIZE
+    VOCAB_SIZE = len(top_words)  # ← вот и вся магия
     print(f"Словарь построен: {len(top_words)} слов")
+    print(f"Топ слов: {top_words[:10]}")
+    print('word_to_index:', word_to_index)
 
     print(f"Превращаю каналы в вектора длины {VOCAB_SIZE}...")
     count = 0
