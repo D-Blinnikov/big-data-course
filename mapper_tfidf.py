@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# mapper_tfidf.py — финальная версия (без stderr-хака)
-
 import sys
 import math
 import os
@@ -29,8 +26,7 @@ test_data = [
 ]
 
 
-# Берём общее количество документов из переменной окружения
-# Мы передадим её через -cmdenv TOTAL_DOCS=XXXXXX в run_step2
+# Берём общее количество документов из переменной окружения TOTAL_DOCS
 total_docs = int(os.getenv("TOTAL_DOCS", "2"))
 print('total_docs:', total_docs)
 
@@ -44,11 +40,10 @@ for line in sys.stdin:
         tf = float(tf_str)
         df = int(df_str)
 
-        # Сглаженный IDF: log(N / (df + 1))
-        # idf = math.log(total_docs / (df + 1))
+        # Сглаженный IDF, чтобы не было отрицательных значений
         idf = math.log((total_docs + 1) / (df + 1))
         tfidf = tf * idf
 
         print(f"{channel_id}\t{word}\t{tfidf:.6f}")
     except Exception as e:
-        continue  # молча пропускаем битые строки
+        continue

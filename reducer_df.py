@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# reducer_df.py
 import sys
 from sys import stdin
 from collections import defaultdict
@@ -38,13 +36,8 @@ for line in stdin:
         continue
     try:
         word, channel_id, tf_str, one = line.split('\t')
-        # print(word)
-        # print(channel_id)
-        # print(tf_str)
-        # print(one)
         tf = float(tf_str)
         if current_word != word:
-            # выводим предыдущее слово
             if current_word:
                 df = len(channel_tfs)
                 for ch_id, ch_tf in channel_tfs.items():

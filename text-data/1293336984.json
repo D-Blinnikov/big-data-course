@@ -1,0 +1,115 @@
+{
+  "name": "Экология без фанатизма",
+  "type": "public_channel",
+  "id": 1293336984,
+  "messages": [
+    {
+      "id": 1,
+      "type": "service",
+      "date": "2020-01-27T01:06:31",
+      "date_unixtime": "1580076391",
+      "actor": "Экология без фанатизма",
+      "actor_id": "channel1293336984",
+      "action": "create_channel",
+      "title": "zer0",
+      "text": "",
+      "text_entities": []
+    },
+    {
+      "id": 11,
+      "type": "message",
+      "date": "2020-01-29T17:11:59",
+      "date_unixtime": "1580307119",
+      "edited": "2023-06-18T13:56:00",
+      "edited_unixtime": "1687085760",
+      "from": "Экология без фанатизма",
+      "from_id": "channel1293336984",
+      "text": [
+        {
+          "type": "bold",
+          "text": "10 способов приучить детей заботиться об экологии\n\n"
+        },
+        "Без фанатизма, предрассудков и сложностей: ",
+        {
+          "type": "link",
+          "text": "https://teletype.in/@ecodays/BJ6VzM1ML"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "bold",
+          "text": "10 способов приучить детей заботиться об экологии\n\n"
+        },
+        {
+          "type": "plain",
+          "text": "Без фанатизма, предрассудков и сложностей: "
+        },
+        {
+          "type": "link",
+          "text": "https://teletype.in/@ecodays/BJ6VzM1ML"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "message",
+      "date": "2020-01-29T17:29:34",
+      "date_unixtime": "1580308174",
+      "edited": "2023-06-18T13:55:57",
+      "edited_unixtime": "1687085757",
+      "from": "Экология без фанатизма",
+      "from_id": "channel1293336984",
+      "text": [
+        "Всё, что вы хотели знать про концепцию «Ноль отходов», но стеснялись спросить.\n\n— Что такое Zero Waste и как появилась эта идеология?\n— Практическое применение и правило 5R\n— Выводы\n\nЧитаем и внедряем в свою жизнь: ",
+        {
+          "type": "link",
+          "text": "https://teletype.in/@ecodays/HJwCVz1MI"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Всё, что вы хотели знать про концепцию «Ноль отходов», но стеснялись спросить. Ставим акцент.\n\n— Что такое Zero Waste и как появилась эта идеология?\n— Практическое применение и правило 5R\n— Выводы\n\nЧитаем и внедряем в свою жизнь: "
+        },
+        {
+          "type": "link",
+          "text": "https://teletype.in/@ecodays/HJwCVz1MI"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👍"
+        }
+      ]
+    }
+  ]
+}

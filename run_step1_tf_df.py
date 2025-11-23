@@ -31,7 +31,7 @@ def main():
     print("Первые 20 строк результата (TF + DF):")
     run(f"docker exec {NAME_NODE} hdfs dfs -cat {TFIDF_STEP1}/part-00000 | head -n 20")
 
-    print("\nТеперь можно запускать Step 2 — он сам найдёт данные")
+    print("\nДанные готовы для обработки второй парой map - reduce")
 
 if __name__ == "__main__":
     main()

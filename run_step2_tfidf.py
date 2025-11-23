@@ -10,7 +10,6 @@ load_dotenv()
 NAME_NODE             = os.getenv("NAME_NODE", "hadoop-namenode-1")
 CODE_DIR_IN_CONTAINER = os.getenv("CODE_DIR_IN_CONTAINER", "/temp")
 OUTPUT_BASE_DIR       = os.getenv("OUTPUT_BASE_DIR", "/user/hadoop/tfidf_results")
-# STEP1_OUTPUT          = os.getenv("STEP1_OUTPUT")  # ← обязательно укажи в .env после первой джобы!
 TFIDF_STEP1           = os.getenv("TFIDF_STEP1")
 TFIDF_FINAL           = os.getenv("TFIDF_FINAL")
 MIN_TFIDF           = os.getenv("MIN_TFIDF")
@@ -57,7 +56,7 @@ def main():
     run(f"docker exec {NAME_NODE} sh -c \"{streaming_cmd}\"")
 
     print(f"\nГотово! Финальные вектора в {TFIDF_FINAL}")
-    print("Скачивай:")
+
     print(f"mkdir -p final_vectors && docker cp {NAME_NODE}:{TFIDF_FINAL}/part-* final_vectors/")
 
     print("Пример результата (первые 100 строк из part-00000):")
