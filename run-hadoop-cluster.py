@@ -26,9 +26,6 @@ def main():
 
     hdfs_cmds = [
         "hdfs dfs -mkdir -p /user/hadoop/input",
-        "hdfs dfs -put /tmp/data/file1.txt /user/hadoop/input/",
-        "hdfs dfs -put /tmp/data/file2.txt /user/hadoop/input/",
-        "hdfs dfs -put /tmp/data/file3.txt /user/hadoop/input/"
     ]
 
     for cmd in hdfs_cmds:
