@@ -7,25 +7,26 @@
 
 ### 2. Шаг 1: TF + DF (MapReduce)
 
-- mapper_tf.py — считает TF (частоту слова в канале)
-  Вход: `channel_id название весь текст канала`
-  Выход: `слово	channel_id	TF	1`
+- **mapper_tf.py** — считает TF (частоту слова в канале)
 
-- reducer_df.py — считает DF (в скольких каналах встретилось слово)
-  Вход: `слово	channel_id	TF	1`
-  Выход: `слово	channel_id	TF	DF`
+  - Вход: `channel_id название весь текст канала`
+  - Выход: `слово	channel_id	TF	1`
+
+- **reducer_df.py** — считает DF (в скольких каналах встретилось слово)
+
+  - Вход: `слово	channel_id	TF	1`
+  - Выход: `слово	channel_id	TF	DF`
 
 ### 3. Шаг 2: TF-IDF + L2-нормализация (MapReduce)
 
-Вход: слово channel_id TF DF
+- **mapper_tfidf.py** — вычисляет TF-IDF = TF × log((N+1)/(DF+1))
 
-- mapper_tfidf.py — вычисляет TF-IDF = TF × log((N+1)/(DF+1))
-  Вход: `слово	channel_id	TF	DF`
-  Выход: `channel_id	слово	TFIDF`
+  - Вход: `слово	channel_id	TF	DF`
+  - Выход: `channel_id	слово	TFIDF`
 
-- reducer_tfidf.py — собирает все слова одного канала в одну строку и делает L2-нормализацию (вектор длины 1.0)
-  Вход: `channel_id	слово	TFIDF`
-  Выход: `channel_id	слово1:вес1 слово2:вес2 ...`
+- **reducer_tfidf.py** — собирает все слова одного канала в одну строку и делает L2-нормализацию (вектор длины 1.0)
+  - Вход: `channel_id	слово	TFIDF`
+  - Выход: `channel_id	слово1:вес1 слово2:вес2 ...`
 
 Пример:
 1293336984 zero:0.42 waste:0.41 экология:0.30 ноль:0.28 отходов:0.27 ...
