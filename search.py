@@ -80,7 +80,7 @@ def build_vocabulary_and_load_vectors():
     print(f"Топ слов: {top_words[:10]}")
     print('word_to_index:', word_to_index)
 
-    print(f"Превращаю каналы в вектора длины {VOCAB_SIZE}...")
+    print(f"Преобразование каналов в вектора длины {VOCAB_SIZE}...")
     count = 0
     for filepath in glob.glob(f"{LOCAL_VECTORS_DIR}/part-*"):
         with open(filepath, "r", encoding="utf-8") as f:
@@ -107,7 +107,7 @@ def build_vocabulary_and_load_vectors():
                         count += 1
                 except:
                     continue
-    print(f"Готово! Загружено {count:,} каналов как вектора длины {VOCAB_SIZE}")
+    print(f"Загружено {count:,} каналов как вектора длины {VOCAB_SIZE}")
 
 def search(query: str, top_n=20):
     words = re.findall(r'[а-яА-ЯёЁa-zA-Z]{2,}', query.lower())
