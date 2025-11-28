@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# mapper_tf.py — исправленная версия для русского текста + латиницы
-
 import sys
 from collections import Counter
 import re
