@@ -138,25 +138,21 @@ def search(query: str, top_n=20):
 
 # === ГЛАВНЫЙ БЛОК ===
 if __name__ == "__main__":
-    print("Telegram-каналы поисковик — фиксированные вектора длины", VOCAB_SIZE)
     print("=" * 70)
 
     download_vectors_if_needed()
     build_vocabulary_and_load_vectors()
 
     print("\n" + "=" * 70)
-    print(f"ГОТОВО! Загружено {len(channel_vectors):,} каналов")
+    print(f"Загружено {len(channel_vectors):,} каналов")
     print(f"Все вектора имеют длину: {VOCAB_SIZE}")
-    print("Вводи запросы — поиск мгновенный!")
     print("=" * 70)
 
     while True:
         try:
             q = input("\nЗапрос → ").strip()
             if not q:
-                print("Пока!")
                 break
             search(q)
         except KeyboardInterrupt:
-            print("\nПока!")
             break
