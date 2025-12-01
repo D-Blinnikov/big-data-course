@@ -29,7 +29,7 @@ def main():
 
     print(f"\nStep 1 завершён! Результат в {TFIDF_STEP1}")
     print("Первые 20 строк результата (TF + DF):")
-    run(f"docker exec {NAME_NODE} hdfs dfs -cat {TFIDF_STEP1}/part-00000 | head -n 20")
+    run(f"docker exec {NAME_NODE} hdfs dfs -cat {TFIDF_STEP1}/part-00000 | head -n 400")
 
     print("\nДанные готовы для обработки второй парой map - reduce")
 

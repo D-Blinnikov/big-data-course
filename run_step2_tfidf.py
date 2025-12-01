@@ -7,6 +7,7 @@ import subprocess
 
 load_dotenv()
 
+DOC_COUNT_OUTPUT = os.getenv("DOC_COUNT_OUTPUT") 
 NAME_NODE             = os.getenv("NAME_NODE", "hadoop-namenode-1")
 CODE_DIR_IN_CONTAINER = os.getenv("CODE_DIR_IN_CONTAINER", "/temp")
 OUTPUT_BASE_DIR       = os.getenv("OUTPUT_BASE_DIR", "/user/hadoop/tfidf_results")
@@ -17,7 +18,8 @@ MIN_TFIDF           = os.getenv("MIN_TFIDF")
 
 
 def get_total_docs():
-    cmd = f"hdfs dfs -cat {os.getenv('INPUT_DOCS')} | wc -l"
+    cmd = f"hdfs dfs -cat {DOC_COUNT_OUTPUT}/part-00000"
+
     result = subprocess.run(
         f"docker exec {NAME_NODE} sh -c \"{cmd}\"",
         shell=True,
@@ -26,7 +28,12 @@ def get_total_docs():
         text=True,
         check=True
     )
-    return int(result.stdout.strip())
+
+    total_docs = int(result.stdout.strip())
+    print('Всего документов из step2:', total_docs)
+
+    return total_docs
+
 
 def main():
     total_docs = get_total_docs()
@@ -49,7 +56,7 @@ def main():
         f"-cmdenv TOTAL_DOCS={total_docs} "
         "-cmdenv MAX_TERMS=8000 "
         f"-cmdenv MIN_TFIDF={MIN_TFIDF} "
-        "-cmdenv ENABLE_L2_NORM=1 "
+        "-cmdenv ENABLE_L2_NORM=0 "
         "-cmdenv PYTHONIOENCODING=utf-8"
     )
 

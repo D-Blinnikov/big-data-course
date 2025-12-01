@@ -28,7 +28,7 @@ test_data = [
 
 MAX_TERMS       = int(os.getenv("MAX_TERMS", "8000"))
 MIN_TFIDF       = float(os.getenv("MIN_TFIDF", "0.00"))
-ENABLE_L2_NORM  = os.getenv("ENABLE_L2_NORM", "1") == "1"
+ENABLE_L2_NORM  = os.getenv("ENABLE_L2_NORM", "0") == "0"
 
 # Глобальный словарь: channel_id → список пар (word, tfidf)
 vectors = {}
@@ -63,9 +63,9 @@ for channel_id, term_list in vectors.items():
     if ENABLE_L2_NORM:
         norm = math.sqrt(sum(v*v for _, v in top_terms))
         if norm > 0:
-            items = [f"{w}:{v/norm:.6f}" for w, v in top_terms]
+            items = [f"{w}:{v/norm:.20f}" for w, v in top_terms]
         else:
-            items = [f"{w}:{v:.6f}" for w, v in top_terms]
+            items = [f"{w}:{v:.20f}" for w, v in top_terms]
     else:
         items = [f"{w}:{v:.6f}" for w, v in top_terms]
 

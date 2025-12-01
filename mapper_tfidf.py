@@ -40,10 +40,15 @@ for line in sys.stdin:
         tf = float(tf_str)
         df = int(df_str)
 
-        # Сглаженный IDF, чтобы не было отрицательных значений
-        idf = math.log((total_docs + 1) / (df + 1))
+        # Сглаженный IDF, чтобы не было отрицательных значений и нулей
+        epsilon_standard = 1
+        epsilon_smooth = 1 / total_docs
+
+        denominator = df + epsilon_standard if total_docs + 1 != df + epsilon_standard else df + epsilon_smooth
+
+        idf = math.log((total_docs + 1) / denominator)
         tfidf = tf * idf
 
-        print(f"{channel_id}\t{word}\t{tfidf:.6f}")
+        print(f"{channel_id}\t{word}\t{tfidf:.20f}")
     except Exception as e:
         continue

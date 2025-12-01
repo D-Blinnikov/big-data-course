@@ -12,6 +12,8 @@ def main():
 
     os.chdir(ROOT)
 
+    run("python run_step0_count_docs.py")
+
     run("python run_step1_tf_df.py")
 
     run("python run_step2_tfidf.py")
