@@ -60,7 +60,7 @@ for channel_id, term_list in vectors.items():
     term_list.sort(key=lambda x: -x[1])
     top_terms = term_list[:MAX_TERMS]
 
-    if ENABLE_L2_NORM:
+    if False:
         norm = math.sqrt(sum(v*v for _, v in top_terms))
         if norm > 0:
             items = [f"{w}:{v/norm:.20f}" for w, v in top_terms]

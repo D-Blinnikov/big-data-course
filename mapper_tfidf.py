@@ -28,7 +28,6 @@ test_data = [
 
 # Берём общее количество документов из переменной окружения TOTAL_DOCS
 total_docs = int(os.getenv("TOTAL_DOCS", "2"))
-print('total_docs:', total_docs)
 
 for line in sys.stdin:
 # for line in test_data:
